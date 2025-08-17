@@ -13,20 +13,17 @@ export class RegistorEntity {
 
 
     @Column({
-        type:'varchar',
-        unique:true
+        type:'varchar'
     })
     username:string
     
     @Column({
         type:'varchar',
-        unique:true
     })
     email:string
     
     @Column({
         type:'varchar',
-        unique:true
     })
     phone_number:string
     

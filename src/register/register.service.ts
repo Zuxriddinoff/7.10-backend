@@ -18,21 +18,6 @@ export class RegisterService {
   async create(createRegisterDto: CreateRegisterDto) {
     try {
       const {full_name, username, email, phone_number, password, gender} = createRegisterDto
-      
-      const existsUsername = await this.registerRepo.findOne({where:{username}})
-      if(existsUsername){
-        throw new ConflictException('username already exist')
-      }
-
-      const existsEmail = await this.registerRepo.findOne({where:{email}})
-      if(existsEmail){
-        throw new ConflictException('email already exist')
-      }
-
-      const existsPhoneNumber = await this.registerRepo.findOne({where:{phone_number}})
-      if(existsPhoneNumber){
-        throw new ConflictException('phone number already exist')
-      }
 
       const user = this.registerRepo.create({
         full_name,
@@ -74,29 +59,6 @@ export class RegisterService {
       const user = await this.registerRepo.findOne({where:{id}})
       if(!user){
         throw new NotFoundException("user not found")
-      }
-      if(updateRegisterDto.username){
-        const {username} = updateRegisterDto
-        const existsUsername = await this.registerRepo.findOne({where:{username}})
-        if(existsUsername){
-          throw new ConflictException('username already exist')
-        }
-      }
-
-      if(updateRegisterDto.email){
-        const {email} = updateRegisterDto
-        const existsEmail = await this.registerRepo.findOne({where:{email}})
-        if(existsEmail){
-          throw new ConflictException('email already exist')
-        }
-      }
-
-      if(updateRegisterDto.phone_number){
-        const {phone_number} = updateRegisterDto
-        const existsPhoneNumber = await this.registerRepo.findOne({where:{phone_number}})
-        if(existsPhoneNumber){
-          throw new ConflictException('phone number already exist')
-        }
       }
 
       await this.registerRepo.update({id}, updateRegisterDto)

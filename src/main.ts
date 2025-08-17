@@ -17,8 +17,8 @@ async function bootstrap() {
   )
 
   const swagger = new DocumentBuilder()
-    .setTitle('Cats example')
-    .setDescription('The cats API description')
+    .setTitle('User')
+    .setDescription('The User API description')
     .setVersion('1.0')
     .addTag('cats')
     .build();
